@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="hibernate.dao.entity.Role"
+		table="tab_role">
+		<id name="id" column="id">
+			<generator class="identity" />
+		</id>
+		<property name="code" column="code"></property>
+		<property name="name" column="name"></property>
+		<property name="modifierCode" column="modifierCode"></property>
+		<property name="modifierName" column="modifierName"></property>
+		<property name="modifyTime" column="modifyTime"></property>
+		<property name="createUserCode" column="createUserCode"></property>
+		<property name="createUserName" column="createUserName"></property>
+		<property name="createTime" column="createTime"></property>
+		<property name="version" column="version"></property>
+		<property name="isDel" column="isDel"></property>
+		
+		<set name="tests"  inverse="true"  cascade="all">
+            <key column="role_id"></key>
+            <one-to-many class="hibernate.dao.entity.Test"/>
+        </set>
+	</class>
+</hibernate-mapping>

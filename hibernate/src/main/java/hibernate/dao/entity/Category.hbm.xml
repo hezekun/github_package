@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="hibernate.dao.entity.Category"
+		table="category">
+		<id name="categoryId" column="ID">
+			<generator class="identity" />
+		</id>
+		<property name="categoryName" column="NAME"></property>
+		 <set name="items" cascade="all" table="CATEGORY_ITEM_REF">
+            <key>
+                <column name="Category_ID"></column>
+            </key>
+            <many-to-many class="hibernate.dao.entity.Item" column="Item_ID"></many-to-many>
+        </set>
+		 
+	</class>
+</hibernate-mapping>
