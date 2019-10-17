@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- 属性注入 -->
+	<!-- <bean id="myStudent" class="com.zhisen.spring_test1.dao.entity.Student"> 
+		<property name="id" value="10"></property> <property name="name" value="he"></property> 
+		<property name="list"> <list> <value>0000000</value> <value>1111111111</value> 
+		<value>222222222222</value> </list> </property> <property name="subject"> 
+		<bean id="mySubject" class="com.zhisen.spring_test1.dao.entity.Subject"> 
+		<property name="id" value="2"></property> <property name="subname" value="语文"></property> 
+		</bean> </property> </bean> <bean id="myStudent1" class="com.zhisen.spring_test1.dao.entity.Student"> 
+		<property name="id" value="10"></property> <property name="name" value="he"></property> 
+		<property name="list"> <list> <value>0000000</value> <value>1111111111</value> 
+		<value>222222222222</value> </list> </property> <property name="subject"> 
+		<bean id="mySubject" class="com.zhisen.spring_test1.dao.entity.Subject"> 
+		<property name="id" value="2"></property> <property name="subname" value="语文"></property> 
+		</bean> </property> </bean> <bean id="mySubject" class="com.zhisen.spring_test1.entity.Subject"> 
+		<property name="id" value="2"></property> <property name="subname" value="语文"></property> 
+		</bean> -->
+
+
+	<bean id="myStudent"
+		class="com.zhisen.spring_test1.dao.entity.Student">
+		<property name="id" value="10"></property>
+		<property name="name" value="he"></property>
+		<property name="list">
+			<list>
+				<value>0000000</value>
+				<value>1111111111</value>
+				<value>222222222222</value>
+			</list>
+		</property>
+		<property name="subject">
+			<bean id="mySubject"
+				class="com.zhisen.spring_test1.dao.entity.Subject">
+				<property name="id" value="2"></property>
+				<property name="subname" value="语文"></property>
+			</bean>
+		</property>
+		<property name="studentDao" ref="myStudentDaoImpl"></property>
+		<property name="sets">
+			<set>
+				<value>aaa</value>
+				<value>aaa</value>
+				<value>bbbb</value>
+				<value>bbbbb</value>
+			</set>
+		</property>
+		<property name="maps">
+			<map>
+				<entry key="aaa" value="String"></entry>
+				<entry key="aaa111" value="String"></entry>
+				<entry key="aaa11222" value="String"></entry>
+			</map>
+		</property>
+		<property name="properties">
+			<props>
+				<prop key="safasd">asgasd</prop>
+				<prop key="safasd1">阿斯顿发送到</prop>
+				<prop key="safasd2">首发得分</prop>
+				<prop key="safasd3">勾三搭四</prop>
+			</props>
+		</property>
+		<property name="ls">
+			<list>
+				<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+					<property name="id" value="2"></property>
+					<property name="subname" value="语文"></property>
+				</bean>
+			</list>
+		</property>
+
+		<property name="m">
+			<map>
+				<entry key="student1">
+					<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+						<property name="id" value="2"></property>
+						<property name="subname" value="语文"></property>
+					</bean>
+				</entry>
+				<entry key="student2">
+					<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+						<property name="id" value="2"></property>
+						<property name="subname" value="语文"></property>
+					</bean>
+				</entry>
+				<entry key="student3">
+					<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+						<property name="id" value="2"></property>
+						<property name="subname" value="语文"></property>
+					</bean>
+				</entry>
+			</map>
+		</property>
+		
+		<!-- List<Map<String,Subject>> -->
+		<property name="listMap">
+			<list>
+				<map>
+					<entry key="student1">
+						<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+							<property name="id" value="2"></property>
+							<property name="subname" value="语文"></property>
+						</bean>
+					</entry>
+					<entry key="student2">
+						<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+							<property name="id" value="2"></property>
+							<property name="subname" value="语文"></property>
+						</bean>
+					</entry>
+					<entry key="student3">
+						<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+							<property name="id" value="2"></property>
+							<property name="subname" value="语文"></property>
+						</bean>
+					</entry>
+				</map>
+				<map>
+					<entry key="student1">
+						<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+							<property name="id" value="2"></property>
+							<property name="subname" value="语文"></property>
+						</bean>
+					</entry>
+					<entry key="student2">
+						<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+							<property name="id" value="2"></property>
+							<property name="subname" value="语文"></property>
+						</bean>
+					</entry>
+					<entry key="student3">
+						<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+							<property name="id" value="2"></property>
+							<property name="subname" value="语文"></property>
+						</bean>
+					</entry>
+				</map>
+			</list>
+		</property>
+
+	<property name="omap">
+			<map>
+				<entry>
+				<key>
+				<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+						<property name="id" value="2"></property>
+						<property name="subname" value="语文"></property>
+					</bean>
+				</key>
+					<value>asdfasdf</value>
+				</entry>
+				
+				<entry>
+				<key>
+				<bean class="com.zhisen.spring_test1.dao.entity.Subject">
+						<property name="id" value="2"></property>
+						<property name="subname" value="数学"></property>
+					</bean>
+				</key>
+					<value></value>
+				</entry>
+				
+			</map>
+		</property>
+
+	</bean>
+
+	<bean id="myStudentDaoImpl"
+		class="com.zhisen.spring_test1.dao.impl.StudentDaoImpl">
+	</bean>
+
+	<bean id="getMyStudent"
+	class = "com.zhisen.spring_test1.dao.factory.StudentFactory"
+	factory-method="getStudent">
+	</bean>
+	
+	<bean id="factory" class="com.zhisen.spring_test1.dao.factory.StudentFactory"></bean>
+	
+	<bean id="myStudent2" factory-bean="factory" factory-method="getStu"></bean>
+	
+	<context:property-placeholder location="classpath:dbConfig.properties"/>
+	
+	<bean id="dbConfig" class="com.zhisen.spring_test1.dao.entity.DBConfig">
+	<property name="userName" value="${mysql.userName}"></property>
+	<property name="password" value="${mysql.password}"></property>
+	<property name="jdbcDriver" value="${mysql.driver}"></property>
+	
+	</bean>
+	
+	
+	<!-- 构造注入 -->
+	<!-- <bean id="myStudent1" class="com.zhisen.spring_test1.entity.Student" 
+		> <constructor-arg index="0" value="100" type="int"></constructor-arg> <constructor-arg 
+		index="1" value="王子恒" type="java.lang.String"></constructor-arg> </bean> -->
+	<!-- more bean definitions for services go here -->
+
+
+</beans>
