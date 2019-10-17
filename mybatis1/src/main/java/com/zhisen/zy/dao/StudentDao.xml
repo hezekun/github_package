@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhisen.zy.dao.StudentDao">
+
+	<select id="findAllStudent"
+		resultType="map">
+		select * from student
+	</select>
+
+	<select id="findStudentByName" parameterType="String" resultType="map">
+		select * from student where name=#{name}
+	</select>
+
+	<insert id="saveStudent"
+		parameterType="map"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into Student(name)
+		values(#{name})
+	</insert>
+	
+	<update id="updateStudent" parameterType="map">
+		update student set name=#{name},version=version+1
+		where version = #{version}
+	</update>
+	
+	<delete id="deleteStudent" parameterType="map">
+		delete from student where id=#{id} and version=#{version}
+	</delete>
+	
+</mapper>

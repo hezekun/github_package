@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhisen.zy.dao.StudentDao">
+
+	
+
+	<insert id="saveGrade">
+		insert into Student values(#{select id from Student },#{grade})
+	
+	</insert>
+	
+	<select id="findOrganizationByPersonId" 
+	resultType="map">
+	select a.id,
+				 a.code,
+				 a.pcode,
+				 a.name,
+				 a.orgLevel,
+				 a.sort,
+				 a.modifierCode,
+				 a.modifierName,
+				 a.modifyTime,
+				 a.createUserCode,
+				 a.createUserName,
+				 a.createTime,
+				 a.version,
+				 a.isDel
+	 from tab_organization a
+	 join tab_org_person_ref b on a.id=b.organizationId
+	 join tab_person c on b.personId=c.id
+	 where b.personId=#{personId} AND a.isDel  = 0
+	</select>
+	
+	<select id="findRoleByPersonId" 
+	resultType="map">
+	select
+		a.id
+		,a.code
+		,a.name
+		a.modifierCode
+				,a.modifierName
+				,a.modifyTime
+				,a.createUserCode
+				,a.createUserName
+				,a.createTime
+				,a.version
+				,a.isDel
+	from tab_role a
+	join tab_person_role_ref b on a.id=b.roleId
+	WHERE b.personId=#{perosnid} AND a.isDel  = 0
+	</select>
+	
+	<select id="findGroupByPersonId" 
+	resultType="map">
+	select  a.id
+				,a.pid
+				,a.name
+				,a.modifierCode
+				,a.modifierName
+				,a.modifyTime
+				,a.createUserCode
+				,a.createUserName
+				,a.createTime
+				,a.version
+				,a.isDel
+				,a.remark
+		 FROM  tab_group a
+		 join tab_user_group_ref b on b.groupId=a.id
+		 WHERE b.personId=#{perosnid} AND a.isDel  
+	</select>
+	
+	
+</mapper>

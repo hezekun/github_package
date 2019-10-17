@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org//dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.test.TestTableMapper">
+	<select id="selectTestTable" resultType="mybatis.test.TestTable">
+		select * from testtable;
+	</select>
+    <!-- 案例 -->
+	<select id="findActiveTestTableWithTitleLike"
+		parameterType="mybatis.test.TestTable"
+		resultType="mybatis.test.TestTable">
+		SELECT * FROM TestTable
+		WHERE 1=1
+		<if test="id != null">
+			AND id = #{id}
+		</if>
+		<if test="name !=null">
+			and name = #{name}
+		</if>
+	</select>
+
+	<select id="findTestTableById"
+		parameterType="mybatis.test.TestTable"
+		resultType="mybatis.test.TestTable">
+		SELECT * FROM testTable
+		WHERE 1=1
+		<choose>
+			<when test="name != null">
+				AND name like #{name}
+			</when>
+			<when test="id != null">
+				AND id like #{id}
+			</when>
+			<otherwise>
+				AND featured = 1
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findTestTable" resultType="mybatis.test.TestTable">
+		SELECT * FROM BLOG
+		<where>
+			<if test="state != null">
+				state = #{state}
+			</if>
+			<if test="title != null">
+				AND title like #{title}
+			</if>
+			<if test="author != null and author.name != null">
+				AND author_name like #{author.name}
+			</if>
+		</where>
+	</select>
+
+      <!-- 更新 -->
+	<update id="updateTestTable">
+		update testTable
+		<set>
+			<if test="id != null">id=#{id},</if>
+			<if test="name != null">name=#{name},</if>
+
+		</set>
+		where id=#{id}
+	</update>
+
+       <!-- 遍历 -->
+	<select id="selectPostIn" resultType="mybatis.test.TestTable">
+		SELECT *
+		FROM testTable P
+		WHERE ID in
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+
+
+</mapper>
